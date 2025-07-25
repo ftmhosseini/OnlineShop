@@ -2,8 +2,12 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
-    id ("kotlin-parcelize")// <-- Add this plugin
-    id ("kotlin-kapt")// <-- Add this plugin
+    id ("kotlin-parcelize")
+    id ("kotlin-kapt")
+    id ("dagger.hilt.android.plugin") // Hilt plugin
+
+//    id("com.google.devtools.ksp") version "1.6.21-1.0.6"
+//    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -53,13 +57,23 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
-    implementation("com.google.code.gson:gson:2.11.0")
+    implementation(libs.gson)
 
     implementation ("androidx.room:room-runtime:$room_version")
     kapt ("androidx.room:room-compiler:$room_version")
 
+    // KSP
+//    implementation ("com.google.devtools.ksp:symbol-processing-api:1.6.21-1.0.6")
+
 // Optional - Kotlin Extensions and Coroutines support
     implementation ("androidx.room:room-ktx:$room_version")
+    implementation ("androidx.hilt:hilt-navigation-compose:1.1.0")
+    kapt ("androidx.hilt:hilt-compiler:1.0.0")
+
+    // ViewModel
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0")
+    implementation("com.google.dagger:hilt-android:2.51")
+    kapt("com.google.dagger:hilt-compiler:2.51")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
