@@ -4,6 +4,8 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     id ("kotlin-parcelize")// <-- Add this plugin
     id ("kotlin-kapt")// <-- Add this plugin
+    id ("dagger.hilt.android.plugin") // Hilt plugin
+
 }
 
 android {
@@ -60,6 +62,13 @@ dependencies {
 
 // Optional - Kotlin Extensions and Coroutines support
     implementation ("androidx.room:room-ktx:$room_version")
+    implementation ("androidx.hilt:hilt-navigation-compose:1.1.0")
+    kapt ("androidx.hilt:hilt-compiler:1.0.0")
+
+    // ViewModel
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0")
+    implementation("com.google.dagger:hilt-android:2.51")
+    kapt("com.google.dagger:hilt-compiler:2.51")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
